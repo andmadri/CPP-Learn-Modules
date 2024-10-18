@@ -18,8 +18,8 @@ int main(int argc, char *argv[]) {
   std::string str = "*LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
   if (argc >= 2) {
      str = appendStrings(argc, argv);
-    for (char &ch : str) {
-      ch = static_cast<char>(std::toupper(ch));
+    for (char &chr : str) {
+      chr = static_cast<char>(std::toupper(chr));
      }
      str += "\n";
     }
