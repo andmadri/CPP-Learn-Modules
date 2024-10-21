@@ -1,0 +1,8 @@
+Checks: >
+  bugprone-*,
+  cppcoreguidelines-*,
+  modernize-*,
+  -modernize-use-trailing-return-type,
+  readability-*,
+  clang-analyzer-*'
+WarningsAsErrors: true

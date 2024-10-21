@@ -2,8 +2,6 @@ CPP = c++
 
 CPPFLAGS = -Wall -Wextra -Werror -Wconversion -Wshadow -Wpedantic -std=c++11 -g
 
-RM = rm -f
-
 NAME = ./phonebook
 
 RM = rm -rf
@@ -13,9 +11,7 @@ OBJ_DIR = obj
 SRC_DIR = src
 
 SRCS = $(SRC_DIR)/Phonebook.cpp\
-$(SRC_DIR)/Add.cpp\
-$(SRC_DIR)/Contact.cpp\
-$(SRC_DIR)/Search.cpp\
+$(SRC_DIR)/main.cpp
 
 OBJS = $(SRCS: $(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 

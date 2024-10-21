@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Phonebook.hpp"
+#include "../incl/Phonebook.hpp"
 
 int main(){
 	Phonebook phonebook;
@@ -8,18 +8,25 @@ int main(){
 
 	while (true){
 		std::cout << "Choose Option: ADD, SEARCH, EXIT\n";
-		std::getline(std::cin, input);
+		while(!(getline(std::cin, input))){
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "Choose Option: ADD, SEARCH, EXIT\n;
+		}
 		if (input == "ADD"){
-			if (index == 8) index = 0;
-			phonebook.addContact(index);
-			index++;
+			if (index == 8)
+				index = 0;
+			phonebook.addContact(index++);
+			continue ;
 		}
 		else if (input == "SEARCH"){
-
+			phonebook.displaySavedContacts();
+			phonebook.displayOneContact();
+			continue ;
 		}
 		else if (input == "EXIT")
-			break;
-		else
+		 	break;
+	 	else
 			std::cout << "Wrong Input. Try Again\n";
 	}
 	return 0;
