@@ -1,5 +1,6 @@
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#pragma once
+#ifndef __PHONEBOOK_H__
+# define __PHONEBOOK_H__
 
 # include <iostream>
 # include <iomanip>
@@ -19,7 +20,7 @@ public:
 
 private:
 	Contact m_contacts[8];
-	Contact& getContact(int index) {return m_contacts[index];}
+	// Contact& getContact(int index) {return m_contacts[index];}
 };
 
 #endif

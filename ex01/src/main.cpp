@@ -14,8 +14,9 @@ int main(){
 			std::cout << "Choose Option: ADD, SEARCH, EXIT\n";
 		}
 		if (input == "ADD"){
-			if (index == 8)
+			if (index == 8){
 				index = 0;
+			}
 			phonebook.addContact(index++);
 			continue ;
 		}
@@ -24,10 +25,12 @@ int main(){
 			phonebook.displayOneContact();
 			continue ;
 		}
-		else if (input == "EXIT")
+		else if (input == "EXIT"){
 		 	break;
-	 	else
+		}
+	 	else{
 			std::cout << "Wrong Input. Try Again\n";
+		}
 	}
 	return 0;
 }

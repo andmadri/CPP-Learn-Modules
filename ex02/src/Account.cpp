@@ -11,7 +11,7 @@ int Account::_totalNbDeposits{0};
 int Account::_totalNbWithdrawals{0};
 
 Account::Account(int initial_deposit)
-: _amount{initial_deposit}, _nbDeposits{0}, _nbWithdrawals{0}
+: _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
 {
     _totalAmount += _amount;
     _totalNbDeposits += _nbDeposits;
