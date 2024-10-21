@@ -11,7 +11,7 @@ int main(){
 		while(!(getline(std::cin, input))){
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cout << "Choose Option: ADD, SEARCH, EXIT\n;
+			std::cout << "Choose Option: ADD, SEARCH, EXIT\n";
 		}
 		if (input == "ADD"){
 			if (index == 8)

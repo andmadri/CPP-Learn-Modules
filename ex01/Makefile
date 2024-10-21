@@ -13,7 +13,7 @@ SRC_DIR = src
 SRCS = $(SRC_DIR)/Phonebook.cpp\
 $(SRC_DIR)/main.cpp
 
-OBJS = $(SRCS: $(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
@@ -26,11 +26,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 clean:
 
-	@$(RM) $(OBJS)
+	$(RM) $(OBJS)
 
 fclean: clean
 
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
