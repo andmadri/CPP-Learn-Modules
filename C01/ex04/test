@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Define test files and directories
+FILE_DENIED="/root/.bashrc"
+DIR="dir"
+
+# Create test files / directories
+if [[ ! -d $DIR ]]; then
+    mkdir $DIR
+fi
+
+echo "******** testing on non-existent file.."
+./replace "nene" "string1" "string2"
+echo
+echo "******** testing on empty file.."
+./replace /dev/null "string1" "string2"
+echo
+echo "******** testing on a /root/.bashrc (access should be denied)"
+./replace $FILE_DENIED "string1" "string2"
+echo
+echo "******** testing on a directory"
+./replace $DIR "string1" "string2"
+
+# Cleanup section
+echo 
+echo 
+echo "Cleaning up test files and directories..."
+
+if [[ -d $DIR ]]; then
+    rmdir $DIR
+fi
+
+echo "Cleanup done!"
+
