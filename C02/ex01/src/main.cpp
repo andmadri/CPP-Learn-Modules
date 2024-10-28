@@ -9,10 +9,6 @@ int main()
 
     a = Fixed(1234.4321f);
 
-    float test = 1234.4321f;
-
-    std::cout << int(test) << std::endl;
-
     std::cout << "a is " << a << std::endl;
     std::cout << "b is " << b << std::endl;
     std::cout << "c is " << c << std::endl;
