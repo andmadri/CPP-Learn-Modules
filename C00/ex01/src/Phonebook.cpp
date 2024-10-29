@@ -2,11 +2,11 @@
 
 static void getValidInput(std::string& input, const std::string& prompt){
 	while(input.empty()){
-		std::cout << "Invalid Input. Try Again\n" << prompt << ": ";
+		std::cout << "Invalid Input. Try Again" << std::endl << prompt << ": ";
 		while(!(getline(std::cin, input))){
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cout << "Input Error, Try Again\n";
+			std::cout << "Input Error, Try Again" << std::endl;
 			}
 	}
 }
@@ -16,7 +16,7 @@ static void getContactInput(const std::string& prompt, std::string& input){
 	while(!(getline(std::cin, input))){
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Input Error, Try Again\n";
+		std::cout << "Input Error, Try Again" << std::endl;
 	}
 	if(input.empty()){
 		getValidInput(input, prompt);
@@ -72,20 +72,28 @@ Contact& Phonebook::getContact(int index){
 }
 
 void Phonebook::displayOneContact(){
-	int prompted_index {};
-	std::cout << "Enter Index to Display Contact Information: ";
-	while(!(std::cin >> prompted_index)){
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	}
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	if (prompted_index >= 8 || prompted_index < 0){
-		std::cout << "Wrong index. Pick one from 0 to 8\n";
-		return ;
+	int prompted_index = -1;
+	while (true){
+		std::cout << "Enter Index to Display Contact Information: ";
+		if (std::cin >> prompted_index && prompted_index >= 0 && prompted_index < 8){
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			break ;
+		}
+		else {
+			if (std::cin.eof() || std::cin.bad()){
+				// std::cin.clear();
+				// std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << "Error detected" << std::endl;
+				std::exit(1);
+			}
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "Wrong index. Pick one from 0 to 7" << std::endl;
+		}
 	}
 	Contact& contact = getContact(prompted_index);
 	if (contact.getFirstName().empty()){
-		std::cout << "Contact at Provided Index is Empty\n"; 
+		std::cout << "Contact at Provided Index is Empty" << std::endl;
 		return ;
 	}
 	std::cout << "First Name: " + contact.getFirstName() << std:: endl;

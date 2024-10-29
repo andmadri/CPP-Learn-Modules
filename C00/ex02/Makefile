@@ -1,6 +1,6 @@
 CPP = c++
 
-CPPFLAGS = -Wall -Wextra -Werror -Wconversion -Wshadow -Wpedantic -std=c++11 -g
+CPPFLAGS = -Wall -Wextra -Werror -Wno-deprecated-declarations -std=c++11 -g
 
 NAME = account
 

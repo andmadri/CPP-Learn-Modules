@@ -15,14 +15,13 @@ std::string appendStrings(int argc, char *argv[]) {
 }
 
 int main(int argc, char *argv[]) {
-  std::string str = "*LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
+  std::string str = "*LOUD AND UNBEARABLE FEEDBACK NOISE";
   if (argc >= 2) {
      str = appendStrings(argc, argv);
     for (char &chr : str) {
       chr = static_cast<char>(std::toupper(chr));
      }
-     str += "\n";
     }
-  std::cout << str;
+  std::cout << str << std::endl;
   return 0;
 }

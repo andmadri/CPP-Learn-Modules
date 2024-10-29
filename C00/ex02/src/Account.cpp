@@ -11,7 +11,7 @@ int Account::_totalNbDeposits{0};
 int Account::_totalNbWithdrawals{0};
 
 Account::Account(int initial_deposit)
-: _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0), _accountIndex {_nbAccounts++}
+: _amount(initial_deposit), _accountIndex {_nbAccounts++}, _nbDeposits(0), _nbWithdrawals(0) 
 {
     _totalAmount += _amount;
     _totalNbDeposits += _nbDeposits;
@@ -99,10 +99,12 @@ int Account::checkAmount(void) const{
 
 void Account::displayStatus(void) const{
     std::stringstream s;
+    _displayTimestamp();
     s << "index:" << this->_accountIndex << ";"; 
     s << "amount:" << this->_amount << ";";
     s << "deposits:" << this->_nbDeposits << ";";
     s << "withdrawals:" << this->_nbWithdrawals << ";";
+    std::cout << s.str() << std::endl;
 }
 
 void Account::_displayTimestamp(void){

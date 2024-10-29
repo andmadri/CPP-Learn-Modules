@@ -47,8 +47,8 @@ private:
 
 	static void	_displayTimestamp( void );
 
-	int				_accountIndex;
 	int				_amount;
+	int				_accountIndex;
 	int				_nbDeposits;
 	int				_nbWithdrawals;
 
