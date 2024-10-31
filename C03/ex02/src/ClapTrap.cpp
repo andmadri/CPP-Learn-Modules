@@ -1,8 +1,8 @@
 #include "../incl/ClapTrap.hpp"
 
 ClapTrap::ClapTrap(const std::string& name)
-: m_name(name), m_hit_points(100), m_energy_points(50),
-  m_attack_damage(20) 
+: m_name(name), m_hit_points(100), m_energy_points(100),
+  m_attack_damage(30) 
 {
   std::cout << "ClapTrap " << name << " is created\n";
 }
