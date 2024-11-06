@@ -4,6 +4,7 @@
 
 #include <string>
 #include <iostream>
+#include <climits>
 
 class ClapTrap{
 
@@ -18,13 +19,7 @@ public:
   void takeDamage(unsigned int amount);
   void beRepaired(unsigned int amount);
 
-  std::string& getName();
-  int getHitPoints();
-  int getEnergyPoints();
-  int getAttackDamage();
-  void setEnergyPoints(int i);
-
-private:
+protected:
 
   std::string m_name;
   int m_hit_points;

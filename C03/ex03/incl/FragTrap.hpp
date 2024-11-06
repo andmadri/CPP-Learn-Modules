@@ -5,7 +5,7 @@
 #include <string>
 #include "../incl/ClapTrap.hpp"
 
-class FragTrap: public ClapTrap{
+class FragTrap: virtual public ClapTrap{
 
 public:
 

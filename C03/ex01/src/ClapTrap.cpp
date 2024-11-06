@@ -1,8 +1,8 @@
 #include "../incl/ClapTrap.hpp"
 
 ClapTrap::ClapTrap(const std::string& name)
-: m_name(name), m_hit_points(100), m_energy_points(50),
-  m_attack_damage(20) 
+: m_name(name), m_hit_points(10), m_energy_points(10),
+  m_attack_damage(0) 
 {
   std::cout << "ClapTrap " << name << " is created\n";
 }
@@ -39,7 +39,10 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-  m_hit_points -= amount;
+  if (static_cast<int>(amount) >= m_hit_points)
+    m_hit_points = 0;
+  else
+    m_hit_points -= amount;
   std::cout << "ClapTrap " << m_name << " takes " << amount << " points of damage!";
   std::cout << " Remaining hit points: " << m_hit_points << std::endl;
 
@@ -51,7 +54,11 @@ void ClapTrap::beRepaired(unsigned int amount)
       std::cout << "ClapTrap " << m_name << " has no more energy/hit_points left\n";
       return;
   }
+  if (amount >= INT_MAX)
+    amount = INT_MAX;
   m_hit_points += amount;
+  if (m_hit_points <= 0)
+    m_hit_points = INT_MAX;
   --m_energy_points;
   std::cout << "ClapTrap " << m_name << " hit points are now ";
   std::cout << amount << " more than before\n";
@@ -60,29 +67,4 @@ void ClapTrap::beRepaired(unsigned int amount)
 ClapTrap::~ClapTrap()
 {
   std::cout << "ClapTrap " << m_name << " is destroyed\n";
-}
-
-std::string& ClapTrap::getName()
-{
-  return m_name;
-}
-
-int ClapTrap::getHitPoints()
-{
-  return m_hit_points;
-}
-
-int ClapTrap::getEnergyPoints()
-{
-  return m_energy_points;
-}
-
-int ClapTrap::getAttackDamage()
-{
-  return m_attack_damage;
-}
-
-void ClapTrap::setEnergyPoints(int i)
-{
-  m_energy_points += i;
 }

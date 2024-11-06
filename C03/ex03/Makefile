@@ -2,7 +2,7 @@ NAME = FragTrap
 
 CPP = c++
 
-CPPFLAGS = -Wall -Werror -Wextra -std=c++11 -g
+CPPFLAGS = -Wall -Werror -Wextra -Wshadow -Wno-shadow -std=c++11 -g
 
 RM = rm -rf
 
