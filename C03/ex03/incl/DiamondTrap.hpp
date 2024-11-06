@@ -5,18 +5,20 @@
 #include "../incl/ScavTrap.hpp"
 #include "../incl/FragTrap.hpp"
 
-class DiamondTrap: public FragTrap, public ScavTrap{
+class DiamondTrap : public ScavTrap, public FragTrap
+{
 
 public:
-    DiamondTrap(std::string name);
-    DiamondTrap& DiamondTrap(DiamondTrap& other);
+  DiamondTrap(std::string name);
+  DiamondTrap(DiamondTrap& other);
+  DiamondTrap& operator=(DiamondTrap &other);
+  ~DiamondTrap();
 
-
-    void whoAmI();
-
+  void attack(const std::string& target);
+  void whoAmI();
 
 private:
-    std::string m_name;
+  std::string m_name;
 };
 
 #endif

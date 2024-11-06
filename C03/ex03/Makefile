@@ -1,4 +1,4 @@
-NAME = FragTrap
+NAME = DiamondTrap
 
 CPP = c++
 
@@ -9,7 +9,8 @@ RM = rm -rf
 SRCS = $(SRC_DIR)/main.cpp\
 $(SRC_DIR)/ClapTrap.cpp\
 $(SRC_DIR)/ScavTrap.cpp\
-$(SRC_DIR)/FragTrap.cpp
+$(SRC_DIR)/FragTrap.cpp\
+$(SRC_DIR)/DiamondTrap.cpp
 
 SRC_DIR = src
 

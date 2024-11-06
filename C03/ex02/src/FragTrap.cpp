@@ -25,7 +25,7 @@ FragTrap& FragTrap::operator=(FragTrap& other)
 
 FragTrap::~FragTrap()
 {
-  std::cout << "FragTRap " << m_name << " is destroyed" << std::endl;
+  std::cout << "FragTrap " << m_name << " is destroyed" << std::endl;
 }
 
 void FragTrap::highFivesGuys(void)
