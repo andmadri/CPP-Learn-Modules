@@ -9,13 +9,14 @@ class ScavTrap: public ClapTrap{
 
 public:
 
+  ScavTrap() = default;
   ScavTrap(const std::string& name);
-  ScavTrap(ScavTrap& other);
-  ScavTrap& operator=(ScavTrap& other);
+  ScavTrap(const ScavTrap& other);
+  ScavTrap& operator=(const ScavTrap& other);
   ~ScavTrap();
 
   void guardGate();
-  void attack(const std::string& target);
+  void attack(const std::string& target) override;
 
 };
 
