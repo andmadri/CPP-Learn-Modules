@@ -1,4 +1,4 @@
-NAME = Animal
+NAME = Game
 CPP = c++
 CPPFLAGS = -Wall -Werror -Wextra -g -std=c++11
 RM = rm -rf

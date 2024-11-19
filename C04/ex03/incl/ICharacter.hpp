@@ -4,6 +4,8 @@
 #include <string>
 #include "../incl/AMateria.hpp"
 
+class AMateria;
+
 class ICharacter{
 
 public:

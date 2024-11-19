@@ -1,18 +1,17 @@
 #include "../incl/Dog.hpp"
 
-Dog::Dog(): Animal(), m_brain(new Brain()){
+Dog::Dog(): m_brain(new Brain()){
   this->type = "Dog";
   std::cout << "Dog created" << std::endl;
 }
 
-Dog::Dog(const Dog& other): Animal(other){
+Dog::Dog(const Dog& other){
   *this = other;
 }
 
 Dog& Dog::operator=(const Dog& other)
 {
   if (this != &other){
-    Animal::operator=(other);
     delete this->m_brain;
     this->m_brain = new Brain(*other.m_brain);
   }
