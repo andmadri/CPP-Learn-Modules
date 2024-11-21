@@ -9,7 +9,7 @@ public:
     Ice();
     Ice(const Ice& other);
     Ice& operator=(const Ice& other);
-    ~Ice() = default;
+    ~Ice();
 
     AMateria* clone() const override;
     void use(ICharacter& traget) override;

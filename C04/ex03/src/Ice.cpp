@@ -7,11 +7,12 @@ Ice::Ice(const Ice& other): AMateria("ice"){
 }
 
 Ice& Ice::operator=(const Ice& other){
-    if (this != &other){
-        m_type = other.m_type;
-    }
+    if (this != &other)
+        return *this;
     return *this;
 }
+
+Ice::~Ice(){}
 
 AMateria* Ice::clone() const{
     return new Ice(*this);

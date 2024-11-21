@@ -7,11 +7,12 @@ Cure::Cure(const Cure& other): AMateria("ice"){
 }
 
 Cure& Cure::operator=(const Cure& other){
-    if (this != &other){
-        m_type = other.m_type;
-    }
+    if (this != &other)
+        return *this;
     return *this;
 }
+
+Cure::~Cure(){}
 
 AMateria* Cure::clone() const{
     return new Cure(*this);

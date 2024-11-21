@@ -14,15 +14,17 @@ Character::Character(const std::string& name): m_name(name){
     }
 }
 
-Character::Character(const Character& other){
+Character::Character(const Character& other): Character(other.m_name){
     *this = other;
 }
 
 Character& Character::operator=(const Character& other){
     if (this != &other){
         for(int i = 0; i < 4; ++i){
-            delete this->m_inventory[i];
-            delete this->m_dscrd_inventory[i];
+            if (this->m_inventory[i])
+                delete this->m_inventory[i];
+            if (this->m_dscrd_inventory[i])
+                delete this->m_dscrd_inventory[i];
             this->m_inventory[i] = nullptr;
             this->m_dscrd_inventory[i] = nullptr;
         }
@@ -41,8 +43,10 @@ Character& Character::operator=(const Character& other){
 
 Character::~Character(){
     for (int i = 0; i < 4; ++i){
-        if (m_dscrd_inventory[i])
             delete m_dscrd_inventory[i];
+            delete m_inventory[i];
+            m_dscrd_inventory[i] = nullptr;
+            m_inventory[i] = nullptr;
     }
 }
 
@@ -52,7 +56,7 @@ std::string const& Character::getName() const{
 
 void Character::equip(AMateria *m){
     for (int i = 0; i < 4; ++i){
-        if (!m_inventory[i]){
+        if (!m_inventory[i] && m){
             m_inventory[i] = m;
             return ;
         }
@@ -64,10 +68,11 @@ void Character::unequip(int idx){
         if (m_inventory[idx]){
             for (int i = 0; i < 4; ++i){
                 if (!m_dscrd_inventory[i]){
-                      m_dscrd_inventory[i ]= m_inventory[idx];
+                      m_dscrd_inventory[i]= m_inventory[idx];
+                      m_inventory[idx] = nullptr;
+                      return ;
                 }
             }
-            m_inventory[idx] = nullptr;
         }
     }
 }
