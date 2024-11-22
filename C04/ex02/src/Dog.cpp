@@ -5,7 +5,7 @@ Dog::Dog(): m_brain(new Brain()){
   std::cout << "Dog created" << std::endl;
 }
 
-Dog::Dog(const Dog& other){
+Dog::Dog(const Dog& other): m_brain(new Brain()){
   *this = other;
 }
 

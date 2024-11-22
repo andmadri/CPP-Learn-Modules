@@ -26,9 +26,10 @@ int main(){
       animals[i] = new Cat();
     }
   }
+
   std::cout << "\n\n";
   for (int i = 0; i < size; ++i){
     delete animals[i];
   }
-  // testDeepCopy();
+  testDeepCopy();
 }
