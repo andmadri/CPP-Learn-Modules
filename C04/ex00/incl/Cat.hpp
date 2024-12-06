@@ -9,7 +9,7 @@ public:
   Cat();
   Cat(const Cat& other);
   Cat& operator=(const Cat& other);
-  ~Cat() = default;
+  ~Cat();
 
   void makeSound() const override;
 };

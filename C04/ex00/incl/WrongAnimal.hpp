@@ -8,7 +8,7 @@ public:
   WrongAnimal();
   WrongAnimal(const WrongAnimal &other);
   WrongAnimal& operator=(const WrongAnimal &other);
-  virtual ~WrongAnimal() = default;
+  virtual ~WrongAnimal();
 
   void makeSound() const;
   virtual std::string getType() const;

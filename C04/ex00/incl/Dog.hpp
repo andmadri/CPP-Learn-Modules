@@ -9,7 +9,7 @@ public:
   Dog();
   Dog(const Dog& other);
   Dog& operator=(const Dog& other);
-  ~Dog() = default;
+  ~Dog();
 
   void makeSound() const override;
 };

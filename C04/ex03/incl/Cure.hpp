@@ -9,7 +9,7 @@ public:
     Cure();
     Cure(const Cure& other);
     Cure& operator=(const Cure& other);
-    ~Cure();
+    ~Cure() = default;
 
     AMateria* clone() const override;
     void use(ICharacter& traget) override;

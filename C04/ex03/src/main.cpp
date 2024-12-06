@@ -25,6 +25,8 @@ int main(){
 	me->equip(tmp);
 	me->use(3, *bob);
 
+	me->unequip(3);
+
 
 	delete bob;
 	delete me;
