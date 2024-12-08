@@ -18,16 +18,16 @@ private:
 
 public:
     Form(const std::string& name, int gradeToSign, int gradeToExec);
-    Form(const Form& other);
-    Form& operator=(const Form& other);
-    virtual ~Form() = default;
+    // Form(const Form& other);
+    // Form& operator=(const Form& other);
+    virtual ~AForm() = default;
 
     const std::string& getName() const;
     bool getSigned() const;
     int getGradeToSign() const;
     int getGradeToExec() const;
     
-    void beSigned(const Bureaucrat& Bureaucrat);
+    void beSigned(const Bureaucrat& Bureaucrat) = 0;
     
     class GradeTooLowException: public std::exception{
     public:
