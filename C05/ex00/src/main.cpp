@@ -6,14 +6,16 @@ int main(){
 		Bureaucrat John("John", 14);
 		Bureaucrat Melody("Melody", 1);
 		Bureaucrat Sara("Sara", 150);
-		Bureaucrat Pascal("Pascal", -14);
-		Bureaucrat Alex("Alex", 151);
+		// Bureaucrat Pascal("Pascal", -14);
+		// Bureaucrat Alex("Alex", 151);
+		Bureaucrat Martin(Bureaucrat("Martin", 15));
 
 		std::cout << John;
 		std::cout << Melody;
 		std::cout << Sara;
-		std::cout << Pascal;
-		std::cout << Alex;
+		// std::cout << Pascal;
+		// std::cout << Alex;
+		std::cout << Martin;
 	}
 	catch(const Bureaucrat::GradeTooHighException& e) {
 		std::cerr << "Error: " << e.what() << std::endl;

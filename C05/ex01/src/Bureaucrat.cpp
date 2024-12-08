@@ -59,6 +59,15 @@ void Bureaucrat::decrement(int num){
 	m_grade += num;
 }
 
+void Bureaucrat::signForm(Form& Form){
+	try {
+		Form.beSigned(*this);
+		std::cout << this->getName() << " signed Form " << Form.getName() << " of grade " << Form.getGradeToSign() << std::endl;
+	} catch (const Form::GradeTooLowException& e) {
+		std::cout << this->getName() << " couldn't sign Form " << Form.getName() << " because grade is too low" << std::endl;
+	}
+}
+
 const char* Bureaucrat::GradeTooHighException::what() const noexcept{
 	return "Grade is too high, it should be between and including 1-150";
 }
