@@ -3,13 +3,14 @@
 
 #include <iostream>
 #include <string>
-#include "../incl/AForm.hpp"
+#include "../incl/Form.hpp"
 #include "../incl/ShrubberyCreationForm.hpp"
 #include "../incl/RobotomyRequestForm.hpp"
 #include "../incl/PresidentialPardonForm.hpp"
 #include <exception>
+#include <functional>
 
-class AForm;
+class Form;
 
 class Intern {
 private:
@@ -20,16 +21,11 @@ public:
   Intern& operator=(const Intern& other) = default;
   ~Intern() = default;
 
-  AForm* makeForm(const std::string form_name, const std::string form_target);
-
-  class FormDoesntExist: public std::exception {
-  public:
-    const char* what() const noexcept override;
-  };
+  Form* makeForm(const std::string form_name, const std::string form_target);
 
   typedef struct form_type_s {
     const std::string form_name_s;
-    AForm* (*create)(const std::string form_target_s);
+    std::function<Form* (const std::string&)> createForm;
   } form_type_t;
 };
 

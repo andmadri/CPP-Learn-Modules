@@ -2,11 +2,11 @@
 #include <ctime>
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-: AForm("RobotomyRequestForm", 72, 45), m_target(target){
+: Form("RobotomyRequestForm", 72, 45), m_target(target){
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
-: AForm(other), m_target(other.m_target){
+: Form(other), m_target(other.m_target){
 	*this = other;
 }
 
@@ -19,9 +19,9 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 
 void RobotomyRequestForm::execute(const Bureaucrat& executor) const{
 		if (!this->getSigned()) {
-		throw AForm::FormNotSigned();
+		throw Form::FormNotSigned();
 	} else if (executor.getGrade() > this->getGradeToExec()) {
-			throw AForm::GradeTooLowException();
+			throw Form::GradeTooLowException();
 	}
 	std::cout << "[drilling noises!!]" << std::endl;
 	std::srand(std::time(0));

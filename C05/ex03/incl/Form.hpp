@@ -1,5 +1,5 @@
-#ifndef AFORM_HPP
-#define AFORM_HPP
+#ifndef FORM_HPP
+#define FORM_HPP
 
 #include <string>
 #include <iostream>
@@ -8,7 +8,7 @@
 
 class Bureaucrat;
 
-class AForm{
+class Form{
 
 private:
     const std::string m_name;
@@ -17,8 +17,8 @@ private:
     const int m_grade_to_exec;
 
 public:
-    AForm(const std::string& name, int gradeToSign, int gradeToExec);
-    virtual ~AForm() = default;
+    Form(const std::string& name, int gradeToSign, int gradeToExec);
+    virtual ~Form() = default;
 
     const std::string& getName() const;
     bool getSigned() const;
@@ -43,8 +43,13 @@ public:
         const char* what() const noexcept override;
     };
 
+    class FormDoesntExist: public std::exception {
+    public:
+        const char* what() const noexcept override;
+  };
+
 };
 
-std::ostream& operator<<(std::ostream& out, const AForm& AForm);
+std::ostream& operator<<(std::ostream& out, const Form& Form);
 
 #endif

@@ -1,14 +1,14 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 #define ROBOTOMYREQUESTFORM_HPP
 
-#include "../incl/AForm.hpp"
+#include "../incl/Form.hpp"
 #include <iostream>
 #include <string>
 #include <cstdlib>
 
 class Bureaucrat;
 
-class RobotomyRequestForm: public AForm{
+class RobotomyRequestForm: public Form{
 public:
 	RobotomyRequestForm(const std::string& target);
 	RobotomyRequestForm(const RobotomyRequestForm& other);

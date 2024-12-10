@@ -1,11 +1,11 @@
 #include "../incl/ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
-: AForm("ShrubberyCreationForm", 145, 137), m_target(target){
+: Form("ShrubberyCreationForm", 145, 137), m_target(target){
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
-: AForm(other), m_target(other.m_target){
+: Form(other), m_target(other.m_target){
 	*this = other;
 }
 
@@ -18,9 +18,9 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const{
 	if (!this->getSigned()) {
-		throw AForm::FormNotSigned();
+		throw Form::FormNotSigned();
 	} else if (executor.getGrade() > this->getGradeToExec()) {
-			throw AForm::GradeTooLowException();
+			throw Form::GradeTooLowException();
 	}
 	std::ofstream file(m_target + "_shrubbery");
 	if (!file) {
