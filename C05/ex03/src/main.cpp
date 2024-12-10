@@ -11,11 +11,19 @@ int main(){
 	try{
 
 	Bureaucrat Martin("Martin", 1);
-	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-	rrf->execute(Martin);
-	delete rrf; //what will happen if I catch
+	rrf = someRandomIntern.makeForm("shrubbery creation", "Bender");
+
+	Martin.signForm(*rrf);
+	Martin.executeForm(*rrf);
+
+	std::cout << Martin << std::endl;
+	std::cout << *rrf << std::endl;
+	delete rrf;
 	}
 	catch (const Form::FormDoesntExist& e){
+		std::cout << e.what() << std::endl;
+	}
+	catch (const Form::FormNotSigned& e){
 		std::cout << e.what() << std::endl;
 		delete rrf;
 	}
