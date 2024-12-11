@@ -1,16 +1,36 @@
 #include "../incl/ScalarConverter.hpp"
 
-bool iscontrolchar(const std::string& literal){
-    if (literal.length() == 2){
-        if (literal[0] == '\\' && (literal[1] == 'n' || literal[1] == 't' || literal[1] == 'r' || literal[1] == 'v'))
+
+//use try catch blocks for exceptions 
+//stof() convert string to float
+//stod() for string to double
+
+static char convertChar(const std::string& literal){
+  try {
+    int n = std::stoi(literal);
+    if (n >= CHAR_MIN && n <= CHAR_MAX){
+      return static_cast<char>(n);
     }
+  }
 }
 
-static ScalarType determineScalarType(const std::string& literal){
-    if (iscontrolchar(literal) || (literal.length() == 1 && std::isprint(literal[0]))
-        return ScalarType::CHAR;
+static float convertFloat(const std::string& literal){
+  for()
 }
 
 void ScalarConverter::convert(const std::string& literal){
-    determineScalarType(literal);
+  if (literal.length() == 1 || )
+    convertChar(literal);
+  try {
+    std::stoi(literal);
+    //return 
+  } catch (...) {}
+  try {
+    std::stof(literal);
+    //return
+  } catch (...) {}
+  try {
+    std::stod(literal);
+    //return
+  } catch(...) {}
 }
