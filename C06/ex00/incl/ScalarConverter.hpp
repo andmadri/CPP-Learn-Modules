@@ -3,22 +3,20 @@
 
 #include <string>
 #include <iostream>
+#include <limits>
+#include <climits>
 #include <cctype>
+#include <iomanip>
 
 class ScalarConverter{
 private:
     ScalarConverter() = default;
+    ScalarConverter(const ScalarConverter& other) = delete;
+    ScalarConverter& operator=(const ScalarConverter& other) = delete;
+    ~ScalarConverter() = default;
 
 public:
     static void convert(const std::string& literal);
-};
-
-enum class ScalarType{
-    CHAR,
-    INT,
-    FLOAT,
-    DOUBLE,
-    NONE
 };
 
 #endif
