@@ -3,17 +3,52 @@
 
 #include <iostream>
 
+#include <stdexcept>
+
 template<typename T>
-class A{
+class Array{
 private:
     T* array;
+    unsigned int length;
 public:
-    A(): array(new T[]()) {} //creates an empty array
-    A(unsigned int n): array(new T[n]()) {} //creates an array of n elements initialized by default
-    A(const A& other):A() { *this = other; }
-    A& operator=(const A& other) { if (this != &other) } //how should I do this?
-    T& operator[](T elem) { return array[elem]; } //not sure if what I did here is correct
-    size_t size() const { return sizeof(*array)/sizeof(array[0]); } //is this correct? *array?
+    Array(): array(nullptr), length(0) {}
+
+    Array(unsigned int n): array(new T[n]()), length(n) {}
+
+    Array(const Array& other): array(nullptr), length(0) {
+        *this = other;
+    }
+
+    Array& operator=(const Array& other) { 
+        if (this != &other) {
+            if (array) {
+                delete[] array;
+            }
+            length = other.length;
+            array = new T[length];
+            for (unsigned int i = 0; i < other.length; ++i) {
+                array[i] = other.array[i];
+            }
+        }
+        return *this;
+    } 
+
+    ~Array() {
+        if (array) {
+            delete[] array;
+        }
+    } 
+
+    T& operator[](unsigned int index) { 
+        if (index >= length) {
+            throw std::out_of_range("Index is out of range");
+        }
+        return array[index];
+    }
+
+    unsigned int size() const { 
+        return length;
+    }
 };
 
 
