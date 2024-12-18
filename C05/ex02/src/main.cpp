@@ -9,7 +9,7 @@
 int main(){
 	try {
 		Bureaucrat Joe_Biden("Joe Biden", 1);
-		Bureaucrat Kelly_Biden("Kelly Biden", 1);
+		Bureaucrat Kelly_Biden("Kelly Biden", 1999);
 
 		ShrubberyCreationForm Home("Home");
 		RobotomyRequestForm Roboto("Roboto");
@@ -18,14 +18,7 @@ int main(){
 		Joe_Biden.signForm(Home);
 		Kelly_Biden.signForm(Roboto);
 		Kelly_Biden.executeForm(Roboto);
-	}
-	catch(const AForm::GradeTooHighException& e) {
-		std::cerr << "Error Form: " << e.what() << std::endl;
-	} catch(const AForm::GradeTooLowException& e) {
-		std::cerr << "Error Form: " << e.what() << std::endl;
-	} catch(const Bureaucrat::GradeTooHighException& e) {
-		std::cerr << "Error Bureaucrat: " << e.what() << std::endl;
-	} catch(const Bureaucrat::GradeTooLowException& e) {
-		std::cerr << "Error Bureaucrat: " << e.what() << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << e.what() << std::endl;
 	}
 }

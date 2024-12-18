@@ -19,12 +19,14 @@ int main(){
 	std::cout << Martin << std::endl;
 	std::cout << *rrf << std::endl;
 	delete rrf;
+	} catch (const std::exception& e) {
+		std::cerr << e.what() << std::endl;
 	}
-	catch (const Form::FormDoesntExist& e){
-		std::cout << e.what() << std::endl;
-	}
-	catch (const Form::FormNotSigned& e){
-		std::cout << e.what() << std::endl;
-		delete rrf;
-	}
+	// catch (const Form::FormDoesntExist& e){
+	// 	std::cout << e.what() << std::endl;
+	// }
+	// catch (const Form::FormNotSigned& e){
+	// 	std::cout << e.what() << std::endl;
+	// 	delete rrf;
+	// }
 }
