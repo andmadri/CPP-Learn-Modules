@@ -1,4 +1,4 @@
-NAME = convert
+NAME = identity
 CPP = c++
 CPPFLAGS = -Wall -Werror -Wextra -g -std=c++11
 RM = rm -rf
@@ -13,7 +13,7 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(NAME):$(OBJS)
-	$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)
+	@$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@
