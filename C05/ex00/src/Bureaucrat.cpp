@@ -19,7 +19,7 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade)
 	m_grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other): m_name(other.m_name){
+Bureaucrat::Bureaucrat(const Bureaucrat& other): m_name(other.m_name), m_grade(other.m_grade){
 	*this = other;
 }
 

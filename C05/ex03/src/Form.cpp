@@ -36,10 +36,12 @@ int Form::getGradeToExec() const{
 }
 
 void Form::beSigned(const Bureaucrat& Bureaucrat){
-    if (Bureaucrat.getGrade() <= this->getGradeToSign()) {
+    if (Bureaucrat.getGrade() <= this->getGradeToSign() && !m_signed) {
         m_signed = true;
-    } else {
+    } else if (Bureaucrat.getGrade() > this->getGradeToSign() && !m_signed){
         throw GradeTooLowException();
+    } else {
+        throw FormPreviouslySigned();
     }
 }
     
@@ -53,6 +55,10 @@ const char* Form::GradeTooHighException::what() const noexcept{
 
 const char* Form::FormNotSigned::what() const noexcept{
     return "Form is not yet signed";
+}
+
+const char* Form::FormPreviouslySigned::what() const noexcept{
+    return "Form is already signed";
 }
 
 const char* Form::FormDoesntExist::what() const noexcept{

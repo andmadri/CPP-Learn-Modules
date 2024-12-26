@@ -11,7 +11,7 @@ int main(){
 	try{
 
 	Bureaucrat Martin("Martin", 1);
-	rrf = someRandomIntern.makeForm("shrubbery creation", "Bender");
+	rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
 
 	Martin.signForm(*rrf);
 	Martin.executeForm(*rrf);

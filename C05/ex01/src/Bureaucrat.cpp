@@ -19,7 +19,7 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade)
 	m_grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other): m_name(other.m_name){
+Bureaucrat::Bureaucrat(const Bureaucrat& other): m_name(other.m_name), m_grade(other.m_grade){
 	*this = other;
 }
 
@@ -63,14 +63,14 @@ void Bureaucrat::signForm(Form& Form){
 		Form.beSigned(*this);
 		std::cout << this->getName() << " signed Form " << Form.getName() << " of grade " << Form.getGradeToSign() << std::endl;
 	} catch (const std::exception& e) {
-		std::cout << this->getName() << " couldn't sign Form " << Form.getName() << " because grade is too low" << std::endl;
+		std::cout << this->getName() << " couldn't sign Form " << Form.getName() << " because: " << e.what() << std::endl;
 	}
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const noexcept{
-	return "Grade is too high, it should be between and including 1-150";
+	return "Grade is too high";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const noexcept{
-	return "Grade is too low, it should be between and including 1-150";
+	return "Grade is too low";
 }

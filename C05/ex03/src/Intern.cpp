@@ -8,8 +8,8 @@ Form* Intern::makeForm(const std::string form_name, const std::string form_targe
     };
     for (form_type_t const& formtype: form_array) {
         if (formtype.form_name_s == form_name) {
+            std::cout << "Intern creates " << formtype.form_name_s << std::endl;
             return formtype.createForm(form_target);
-            break ;
         }
     }
     throw Form::FormDoesntExist();

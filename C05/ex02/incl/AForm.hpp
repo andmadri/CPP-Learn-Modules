@@ -38,6 +38,11 @@ public:
         const char* what() const noexcept override;
     };
 
+    class FormPreviouslySigned: public std::exception{
+    public:
+        const char* what() const noexcept override;
+    };
+
     class FormNotSigned: public std::exception{
     public:
         const char* what() const noexcept override;

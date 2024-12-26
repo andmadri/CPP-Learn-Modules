@@ -23,7 +23,7 @@ m_grade_to_sign(gradeToSign), m_grade_to_exec(gradeToExec){
     }
 }
     
-Form::Form(const Form& other): m_name(other.m_name), 
+Form::Form(const Form& other): m_name(other.m_name), m_signed(other.m_signed),
 m_grade_to_sign(other.m_grade_to_sign), m_grade_to_exec(other.m_grade_to_exec){
     *this = other;
 }
@@ -52,17 +52,23 @@ int Form::getGradeToExec() const{
 }
 
 void Form::beSigned(const Bureaucrat& Bureaucrat){
-    if (Bureaucrat.getGrade() <= this->getGradeToSign()) {
+    if (Bureaucrat.getGrade() <= this->getGradeToSign() && !m_signed) {
         m_signed = true;
-    } else {
+    } else if (Bureaucrat.getGrade() > this->getGradeToSign() && !m_signed){
         throw GradeTooLowException();
+    } else {
+        throw FormPreviouslySigned();
     }
 }
     
 const char* Form::GradeTooLowException::what() const noexcept{
-    return "Grade is too low, it should be between 1 to 150";
+    return "Grade is too low";
 }
 
 const char* Form::GradeTooHighException::what() const noexcept{
-    return "Grade is too high, it should be between 1 to 150";
+    return "Grade is too high";
+}
+
+const char* Form::FormPreviouslySigned::what() const noexcept{
+    return "Form is already signed";
 }
