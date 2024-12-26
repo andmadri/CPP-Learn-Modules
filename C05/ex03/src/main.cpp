@@ -7,7 +7,7 @@
 
 int main(){
 	Intern someRandomIntern;
-	Form* rrf;
+	Form* rrf = NULL;
 	try{
 
 	Bureaucrat Martin("Martin", 1);
@@ -19,12 +19,9 @@ int main(){
 	std::cout << Martin << std::endl;
 	std::cout << *rrf << std::endl;
 	delete rrf;
-	}
-	catch (const Form::FormDoesntExist& e){
-		std::cout << e.what() << std::endl;
-	}
-	catch (const Form::FormNotSigned& e){
-		std::cout << e.what() << std::endl;
-		delete rrf;
+	} catch (const std::exception& e) {
+		if (rrf)
+			delete rrf;
+		std::cerr << e.what() << std::endl;
 	}
 }

@@ -24,13 +24,14 @@ int main(){
 		std::cout << "\n";
 		std::cout << John;
 	}
-	catch(const Form::GradeTooHighException& e) {
-		std::cerr << "Error Form: " << e.what() << std::endl;
-	} catch(const Form::GradeTooLowException& e) {
-		std::cerr << "Error Form: " << e.what() << std::endl;
-	} catch(const Bureaucrat::GradeTooHighException& e) {
-		std::cerr << "Error Bureaucrat: " << e.what() << std::endl;
-	} catch(const Bureaucrat::GradeTooLowException& e) {
-		std::cerr << "Error Bureaucrat: " << e.what() << std::endl;
+	catch(const std::exception& e) {
+		std::cerr << e.what() << std::endl;
 	}
+	// } catch(const Form::GradeTooLowException& e) {
+	// 	std::cerr << "Error Form: " << e.what() << std::endl;
+	// } catch(const Bureaucrat::GradeTooHighException& e) {
+	// 	std::cerr << "Error Bureaucrat: " << e.what() << std::endl;
+	// } catch(const Bureaucrat::GradeTooLowException& e) {
+	// 	std::cerr << "Error Bureaucrat: " << e.what() << std::endl;
+	// }
 }
