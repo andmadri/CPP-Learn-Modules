@@ -30,7 +30,7 @@ static bool isFloat(const std::string& literal){
     if (literal[i] == 'f' && i != literal.length() - 1) {
       return false;
     }
-    if (literal[i] != 'f' && !std::isdigit(literal[i]) && literal[i] != '.') {
+    if (literal[i] != 'f' && !std::isdigit(literal[i]) && literal[i] != '.' && literal[i] != '-') {
       return false;
     }
     if (literal[i] == '.') {
@@ -56,7 +56,7 @@ static bool isDouble(const std::string& literal){
   bool d_found = false;
 
   for (size_t i = 0; i < literal.length(); ++i) {
-    if (!std::isdigit(literal[i]) && literal[i] != '.') {
+    if (!std::isdigit(literal[i]) && literal[i] != '.' && literal[i] != '-') {
       return false;
     }
     if (literal[i] == '.') {
@@ -118,7 +118,7 @@ void ScalarConverter::convert(const std::string& literal){
       double d = std::stod(literal);
       std::cout << "char: " << (d >= 32 && d <= 126 ? "\'" + std::string(1, static_cast<char>(d)) + "\'" : "Non displayable") << std::endl;
       std::cout << "int: " << (d > 2147483647.0 || d < -2147483648.0 ? "out of range" : std::to_string(static_cast<int>(d))) << std::endl;
-      if (d < std::numeric_limits<float>::min() || d > std::numeric_limits<float>::max()) {
+      if (d > std::numeric_limits<float>::max() || d < std::numeric_limits<float>::lowest()) {
         std::cout << "float: out of range" << std::endl;
       } else {
         std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(d) << "f" << std::endl;

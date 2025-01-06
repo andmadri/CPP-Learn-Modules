@@ -8,5 +8,6 @@ int main(){
     identify(ptr);
     identify(ptr_ref);
    
+    delete ptr;
     return 0;
 }
