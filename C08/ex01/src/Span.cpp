@@ -1,5 +1,5 @@
 #include "../incl/Span.hpp"
-#include <limits>
+#include <climits>
 
 Span::Span(): m_size(0), m_index(0) {}
 
@@ -22,35 +22,39 @@ void Span::addNumber(unsigned int num){
     if (m_span.size() >= m_size) {
         throw std::out_of_range("Span is full");
     }
-    m_span.insert(num);
+    m_span.push_back(num);
 }
 
-void Span::addManyNumbers(){
-    std::srand(time(0));
-    for (std::set<unsigned int>::iterator it = m_span.begin(); it != m_span.end(); ++it) {
-        addNumber(rand());
+void Span::addManyNumbers(std::vector<unsigned int>::iterator begin, std::vector<unsigned int>::iterator end){
+    auto range_size = std::distance(begin, end);
+    if (!range_size) {
+        throw std::invalid_argument("The range of iterators is empty");
     }
+    if (range_size > m_span.capacity() - m_span.size()) {
+        throw std::out_of_range("The range of iterators is bigger than the size of the span");
+    }
+    std::copy(begin, end, std::back_inserter(m_span));
 }
 
 unsigned int Span::shortestSpan() const{
-    unsigned int shortest = 0;
-    if (m_span.size() < 2) {
-        throw std::logic_error("Span is not big enough");
+    if (m_span.empty() || m_span.size() == 1) {
+        throw std::invalid_argument("Span is empty or has only one number");
     }
-    std::set<unsigned int>::iterator it = m_span.begin();
-    while (it != m_span.end())
-    {
-        ++it;
-        if (*it - *std::prev(it) < shortest || shortest == 0) {
-            shortest = *it - *std::prev(it);
+    unsigned int shortest = INT_MAX;
+    for (size_t i = 0; i < m_span.size() - 1; ++i) {
+        if (shortest > abs(m_span.at(i) - m_span.at(i + 1))) {
+            shortest = abs(m_span.at(i) - m_span.at(i + 1));
+            i = 0;
         }
     }
     return shortest;
 }
 
 unsigned int Span::longestSpan() const{
-    if (m_span.size() < 2) {
-        throw std::logic_error("Span is not big enough");
+
+    if (m_span.empty() || m_span.size() == 1) {
+        throw std::invalid_argument("Span is empty or has only one number");
     }
-    return *m_span.rbegin() - *m_span.begin();
+    auto result = std::minmax_element(m_span.begin(), m_span.end());
+    return (*result.second - *result.first);
 }
