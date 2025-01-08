@@ -9,10 +9,13 @@ template <typename T, typename Container = std::deque<T>>
 class MutantStack: public std::stack<T, Container>{
 public:
     typedef typename std::stack<T>::container_type::iterator iterator;
+    //typedef creates a new alias
+    //typename tells the compiler that what follows is a type and not a member variable
+    typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 
     MutantStack() = default;
 
-    MutantStack(const MutantStack& other) {
+    MutantStack(const MutantStack& other): std::stack<T, Container>(other) {
         *this = other;
     }
 
@@ -57,7 +60,14 @@ public:
         return this->c.end();
     }
 
-    //should I make one for const as well?
+    typename MutantStack<T>::const_iterator begin() const{
+        return this->c.begin();
+    }
+
+    typename MutantStack<T>::const_iterator end() const{
+        return this->c.end();
+    }
+
 };
 
 #endif
