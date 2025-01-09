@@ -22,8 +22,8 @@ public:
 
     void addNumber(unsigned int num);
     void addManyNumbers(std::vector<unsigned int>::iterator begin, std::vector<unsigned int>::iterator end);
-    unsigned int shortestSpan() const;
-    unsigned int longestSpan() const;
+    unsigned int shortestSpan();
+    unsigned int longestSpan();
 };
 
 #endif

@@ -9,8 +9,6 @@ template <typename T, typename Container = std::deque<T>>
 class MutantStack: public std::stack<T, Container>{
 public:
     typedef typename std::stack<T>::container_type::iterator iterator;
-    //typedef creates a new alias
-    //typename tells the compiler that what follows is a type and not a member variable
     typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 
     MutantStack() = default;
