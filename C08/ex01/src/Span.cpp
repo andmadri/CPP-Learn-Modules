@@ -1,5 +1,5 @@
 #include "../incl/Span.hpp"
-#include <climits>
+#include <limits>
 
 Span::Span(): m_size(0), m_index(0) {}
 
@@ -30,27 +30,30 @@ void Span::addManyNumbers(std::vector<unsigned int>::iterator begin, std::vector
     if (!range_size) {
         throw std::invalid_argument("The range of iterators is empty");
     }
-    if (range_size > m_span.capacity() - m_span.size()) {
+    if (static_cast<unsigned long>(range_size) > this->m_size - m_span.capacity()) {
         throw std::out_of_range("The range of iterators is bigger than the size of the span");
     }
     std::copy(begin, end, std::back_inserter(m_span));
 }
 
-unsigned int Span::shortestSpan() const{
+unsigned int Span::shortestSpan() {
     if (m_span.empty() || m_span.size() == 1) {
         throw std::invalid_argument("Span is empty or has only one number");
     }
-    unsigned int shortest = INT_MAX;
+    std::sort(m_span.begin(), m_span.end());
+    unsigned int shortest = std::numeric_limits<unsigned int>::max();
     for (size_t i = 0; i < m_span.size() - 1; ++i) {
-        if (shortest > abs(m_span.at(i) - m_span.at(i + 1))) {
-            shortest = abs(m_span.at(i) - m_span.at(i + 1));
+        if (m_span.at(i + 1) == m_span.at(i))
+            continue;
+        else if (shortest > m_span.at(i + 1) - m_span.at(i)) {
+            shortest = m_span.at(i + 1) - m_span.at(i);
             i = 0;
         }
     }
     return shortest;
 }
 
-unsigned int Span::longestSpan() const{
+unsigned int Span::longestSpan() {
 
     if (m_span.empty() || m_span.size() == 1) {
         throw std::invalid_argument("Span is empty or has only one number");

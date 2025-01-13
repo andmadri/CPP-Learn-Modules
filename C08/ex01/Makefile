@@ -1,6 +1,6 @@
-NAME = template
+NAME = Span
 CPP = c++
-CPPFLAGS = -Wall -Werror -Wextra -g -std=c++11
+CPPFLAGS = -Wall -Werror -Wextra -std=c++11
 RM = rm -rf
 SRC_DIR = src
 OBJ_DIR = obj
