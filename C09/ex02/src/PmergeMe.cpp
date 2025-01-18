@@ -1,5 +1,36 @@
 #include "../incl/PmergeMe.hpp"
 
+bool validateInput(std::string& input) {
+	for (char& c : input) {
+		if (c == '-') {
+			std::cerr << "Error: Not a Positive Integer Sequence" << std::endl;
+			return false;
+		} else if (!(c >= '0' && c <= '9') && c != ' ') {
+			std::cerr << "Error: Not an Integer Sequence" << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
+
+std::vector<int> convertInput(const std::string& input) {
+	
+	std::stringstream ss(input);
+	std::vector<int> numbers;
+	std::string token;
+
+	while (ss >> token) {
+		try {
+			int number = std::stoi(token);
+			numbers.push_back(number);
+		} catch (const std::exception& e) {
+			std::cerr << e.what() << std::endl;
+			exit(1);
+		}
+	}
+	return numbers;
+}
+
 int binarySearch(std::vector<int>& sorted, int number) {
 	int start_index = 0;
 	int end_index = sorted.size() - 1;
@@ -21,7 +52,6 @@ void insertRemaining(std::vector<int>& sorted, std::vector<int>& not_sorted) {
 	}
 }
 
-
 std::vector<int> fordJohnsonAlgorithm(std::vector<int>& elements) {
 	std::vector<int> larger;
 	std::vector<int> smaller;
@@ -38,11 +68,16 @@ std::vector<int> fordJohnsonAlgorithm(std::vector<int>& elements) {
 			smaller.push_back(elements[i]);
 		}
 	}
+
 	if (elements.size() % 2 != 0) {
 		smaller.push_back(elements.back());
 	}
 	std::vector<int> S = fordJohnsonAlgorithm(larger);
 	S.insert(S.begin(), smaller[0]);
-	insertRemaining(S, smaller);
+	std::cout << "smaller: "; 
+	printContainer(smaller);
+	smaller.erase(smaller.begin());
+	if (smaller.size() > 1)
+			insertRemaining(S, smaller);
 	return S;
 }
