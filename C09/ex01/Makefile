@@ -4,6 +4,7 @@ CPPFLAGS = -Wall -Werror -Wextra -g -std=c++11
 RM = rm -rf
 SRC_DIR = src
 OBJ_DIR = obj
+INCL = -Iincl
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
@@ -16,7 +17,7 @@ $(NAME):$(OBJS)
 	$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CPP) $(CPPFLAGS) -c $< -o $@
+	$(CPP) $(INCL) $(CPPFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ_DIR)

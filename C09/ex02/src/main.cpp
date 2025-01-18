@@ -4,13 +4,17 @@ int main(int argc, char *argv[]) {
 	if (argc != 2) {
 		std::cerr << "Error: not correct number of arguments" << std::endl;
 	}
-	if (!validateInput(argv[1])) {
+	std::string inputString(argv[1]);
+	if (!validateInput(inputString)) {
 		return 1;
 	}
-	std::vector<int> to_sort = convertInput(argv[1]);
-	std::vector<int> sorted = fordJohnsonAlgorithm(to_sort);
+	std::vector<int> vect = convertInput<std::vector<int>>(inputString);
+	std::list<int> list = convertInput<std::list<int>>(inputString);
+	std::vector<int> vect_sorted = fordJohnsonAlgorithmVector(vect);
+	std::list<int> list_sorted = fordJohnsonAlgorithmList(list);
 	std::cout << "Before: " << argv[1] << std::endl;
 	std::cout << "After: ";
-	printContainer(sorted);
+	printContainer(vect_sorted);
+	printContainer(list_sorted);
 	return 0;
 }

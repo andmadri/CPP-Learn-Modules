@@ -13,27 +13,11 @@ bool validateInput(std::string& input) {
 	return true;
 }
 
-std::vector<int> convertInput(const std::string& input) {
+int binarySearchVector(std::vector<int> sorted, int number) {
 	
-	std::stringstream ss(input);
-	std::vector<int> numbers;
-	std::string token;
-
-	while (ss >> token) {
-		try {
-			int number = std::stoi(token);
-			numbers.push_back(number);
-		} catch (const std::exception& e) {
-			std::cerr << e.what() << std::endl;
-			exit(1);
-		}
-	}
-	return numbers;
-}
-
-int binarySearch(std::vector<int>& sorted, int number) {
 	int start_index = 0;
 	int end_index = sorted.size() - 1;
+
 	while (start_index <= end_index) {
 		int mid = start_index + (end_index - start_index) / 2;
 		if (sorted[mid] < number) {
@@ -45,18 +29,34 @@ int binarySearch(std::vector<int>& sorted, int number) {
 	return start_index;
 }
 
-void insertRemaining(std::vector<int>& sorted, std::vector<int>& not_sorted) {
-	for (int number : not_sorted) {
-		int pos = binarySearch(sorted, number);
-		sorted.insert(sorted.begin() + pos, number);
+std::list<int>::iterator binarySearchList(std::list<int> sorted, int number) {
+	
+	auto start = sorted.begin();
+	auto end = sorted.end();
+
+	while(std::distance(start, end) > 0) {
+		auto mid = start;
+		std::advance(mid, std::distance(start, end) / 2);
+		if (*mid < number) {
+			start = std::next(mid);
+		} else {
+			end = mid;
+		}
 	}
+	return start;
 }
 
-std::vector<int> fordJohnsonAlgorithm(std::vector<int>& elements) {
+std::vector<int> fordJohnsonAlgorithmVector(std::vector<int>& elements) {
 	std::vector<int> larger;
 	std::vector<int> smaller;
 
 	if (elements.size() <= 1) {
+		return elements;
+	}
+	else if (elements.size() == 2) {
+		if (elements[0] > elements[1]) {
+			std::swap(elements[0], elements[1]);
+		}
 		return elements;
 	}
 	for (size_t i = 0; i + 1 < elements.size(); i += 2) {
@@ -68,16 +68,52 @@ std::vector<int> fordJohnsonAlgorithm(std::vector<int>& elements) {
 			smaller.push_back(elements[i]);
 		}
 	}
-
 	if (elements.size() % 2 != 0) {
 		smaller.push_back(elements.back());
 	}
-	std::vector<int> S = fordJohnsonAlgorithm(larger);
-	S.insert(S.begin(), smaller[0]);
-	std::cout << "smaller: "; 
-	printContainer(smaller);
-	smaller.erase(smaller.begin());
-	if (smaller.size() > 1)
-			insertRemaining(S, smaller);
+	std::vector<int> S = fordJohnsonAlgorithmVector(larger);
+	for (int number : smaller) {
+		int pos = binarySearchVector(S, number);
+		S.insert(S.begin() + pos, number);
+	}
+	return S;
+}
+
+std::list<int> fordJohnsonAlgorithmList(std::list<int>& elements) {
+	std::list<int> larger;
+	std::list<int> smaller;
+
+	if (elements.size() <= 1) {
+		return elements;
+	}
+	// } else if (elements.size() == 2) {
+	// 	if (elements.begin() > elements[1]) {
+	// 		std::swap(elements[0], elements[1]);
+	// 	}
+	// 	return elements;
+	// }
+	auto it = elements.begin();
+	while (it != elements.end()) {
+		int first = *it;
+		++it;
+		if (it == elements.end()) {
+			smaller.push_back(first);
+			break ;
+		}
+		int second = *it;
+		if (first > second) {
+			larger.push_back(first);
+			smaller.push_back(second);
+		} else {
+			larger.push_back(second);
+			smaller.push_back(first);
+		}
+		++it;
+	}
+	std::list<int> S = fordJohnsonAlgorithmList(larger);
+	for (int number : smaller) {
+		auto pos = binarySearchList(S, number);
+		S.insert(pos, number);
+	}
 	return S;
 }
